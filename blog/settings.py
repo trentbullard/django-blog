@@ -26,7 +26,8 @@ SECRET_KEY = '-dl83j8b=(56vn=#^!a*9ris40a%5wz3m0dmumvg0l5iwz18)!'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'trentbullard.com'
+    'trentbullard.com',
+    'localhost'
 ]
 
 
