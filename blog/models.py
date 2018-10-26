@@ -8,6 +8,9 @@ class Blog(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
+  def __str__(self):
+    return f'({self.id}) {self.name}'
+
 class Post(models.Model):
   author = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
   blog = models.ForeignKey(Blog, on_delete=models.SET_NULL, blank=True, null=True)
@@ -17,6 +20,9 @@ class Post(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
+  def __str__(self):
+    return f'({self.id}) {self.title}'
+
 class Comment(models.Model):
   owner = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
   post = models.ForeignKey(Post, on_delete=models.SET_NULL, blank=True, null=True)
@@ -25,3 +31,6 @@ class Comment(models.Model):
   notes = models.TextField()
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
+  
+  def __str__(self):
+    return f'({self.id}) {self.content}'

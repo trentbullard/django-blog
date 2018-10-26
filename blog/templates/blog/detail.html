@@ -1,0 +1,9 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+<a href="{% url 'blog:index' %}">index</a>
+<h1>{{ blog }}</h1>
+<ul>
+  {% for post in blog.post_set.all %}
+    <li><a href="{% url 'blog:post_detail' blog.id post.id %}">{{ post }}</a></li>
+  {% endfor %}
+</ul>

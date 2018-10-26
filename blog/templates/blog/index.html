@@ -1,0 +1,11 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+{% if blog_list %}
+  <ul>
+    {% for blog in blog_list %}
+      <li><a href="{% url 'blog:detail' blog.id %}">{{ blog }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>no blogs are available.</p>
+{% endif %}
