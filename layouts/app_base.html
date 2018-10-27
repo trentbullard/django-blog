@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+  <head>
+    <title>ad infinitum</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'shared/css/foundation.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'shared/css/app.css' %}">
+    <!-- <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'> -->
+  </head>
+  <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+          <ul class="menu">
+            <li class="menu-text"><a href="{% url 'landing' %}">ad infinitum</a></li>
+            <li><a href="{% url 'blog:index' %}">blog</a></li>
+            <li><a href="{% url 'landing' %}">second_thing</a></li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="grid-container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
