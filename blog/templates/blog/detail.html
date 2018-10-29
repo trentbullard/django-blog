@@ -1,9 +1,27 @@
+{% extends 'app_base.html' %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'shared/style.css' %}">
-<a href="{% url 'blog:index' %}">index</a>
-<h1>{{ blog }}</h1>
-<ul>
-  {% for post in blog.post_set.all %}
-    <li><a href="{% url 'blog:post_detail' blog.id post.id %}">{{ post }}</a></li>
-  {% endfor %}
-</ul>
+{% block content %}
+  <!-- Header -->
+  <header class="blog bg-primary text-white text-center">
+    <div class="container">
+      <h1 class="text-uppercase mb-0">{{ blog }}<br /><small class="text-muted">just a test</small></h1>
+      <hr class="star-light">
+    </div>
+  </header>
+
+  <div class="container" style="padding-top: 30px">
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col-md-auto">
+        {% for post in blog.post_set.all %}
+          <a href="{% url 'blog:post_detail' blog.id post.id %}">
+            {{ post }}
+          </a>
+        {% endfor %}
+      </div>
+      <div class="col">
+      </div>
+    </div>
+  </div>
+{% endblock %}

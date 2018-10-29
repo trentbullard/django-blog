@@ -1,12 +1,33 @@
 {% extends 'app_base.html' %}
 {% block content %}
-  {% if blog_list %}
-    <ul>
-      {% for blog in blog_list %}
-        <li><a href="{% url 'blog:detail' blog.id %}">{{ blog }}</a></li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>no blogs are available.</p>
-  {% endif %}
+  <!-- Header -->
+  <header class="blog bg-primary text-white text-center">
+    <div class="container">
+      <h1 class="text-uppercase mb-0">ad infinitum<br /><small class="text-muted">trent's blog list</small></h1>
+      <hr class="star-light">
+    </div>
+  </header>
+
+  <div class="container" style="padding-top: 30px">
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col-md-auto">
+        {% if blog_list %}
+          {% for blog in blog_list %}
+            <a href="{% url 'blog:detail' blog.id %}">
+              <blockquote class="blockquote text-right">
+                <p class="mb-0">{{ blog }}</p>
+                <footer class="blockquote-footer">{{ blog.owner }}</footer>
+              </blockquote>
+            </a>
+          {% endfor %}
+        {% else %}
+        <p>no blogs are available.</p>
+        {% endif %}
+      </div>
+      <div class="col">
+      </div>
+    </div>
+  </div>
 {% endblock %}
