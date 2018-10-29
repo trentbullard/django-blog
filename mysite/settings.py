@@ -20,10 +20,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-dl83j8b=(56vn=#^!a*9ris40a%5wz3m0dmumvg0l5iwz18)!'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '-dl83j8b=(56vn=#^!a*9ris40a%5wz3m0dmumvg0l5iwz18)!')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+if not DEBUG:
+    SECURE_HSTS_SECONDS=1
+    SECURE_CONTENT_TYPE_NOSNIFF=True
+    SECURE_BROWSER_XSS_FILTER=True
+    SECURE_SSL_REDIRECT=True
+    SESSION_COOKIE_SECURE=True
+    CSRF_COOKIE_SECURE=True
+    X_FRAME_OPTIONS='DENY'
 
 ALLOWED_HOSTS = [
     'trentbullard.com',
@@ -81,12 +89,22 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'OPTIONS': {
+                'read_default_file': '/etc/mysql/my.cnf',
+            },
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
