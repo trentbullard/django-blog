@@ -9,7 +9,7 @@ class Blog(models.Model):
   updated_at = models.DateTimeField(auto_now=True)
 
   def __str__(self):
-    return f'({self.id}) {self.name}'
+    return "(%s) %s" % (self.id, self.name)
 
 class Post(models.Model):
   author = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
@@ -21,7 +21,7 @@ class Post(models.Model):
   updated_at = models.DateTimeField(auto_now=True)
 
   def __str__(self):
-    return f'({self.id}) {self.title}'
+    return "(%s) %s" % (self.id, self.title)
 
 class Comment(models.Model):
   owner = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
@@ -33,4 +33,4 @@ class Comment(models.Model):
   updated_at = models.DateTimeField(auto_now=True)
   
   def __str__(self):
-    return f'({self.id}) {self.content}'
+    return "(%s) %s" % (self.id, self.content)
