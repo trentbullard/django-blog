@@ -35,6 +35,7 @@ if not DEBUG:
 
 ALLOWED_HOSTS = [
     'trentbullard.com',
+    'www.trentbullard.com',
     'localhost'
 ]
 
