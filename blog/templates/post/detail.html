@@ -1,16 +1,32 @@
+{% extends 'app_base.html' %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'shared/style.css' %}">
-<a href="{% url 'blog:index' %}">index</a>
-<a href="{% url 'blog:detail' post.blog.id %}">blog</a>
-<h1>{{ post }}</h1>
-<h2>by: {{ post.author }}</h2>
-<p>
-  {{ post.content }}
-</p>
-<hr />
-<h3>Comments</h3>
-<ul>
-  {% for comment in post.comment_set.all %}
-    <li>[{{ comment.owner }}] {{ comment }}</li>
-  {% endfor %}
-</ul>
+{% block content %}
+  <!-- Header -->
+  <header class="blog bg-primary text-white text-center">
+    <div class="container">
+      <h1 class="text-uppercase mb-0">{{ post }}<br /><small class="text-muted">by: {{ post.author }}</small></h1>
+      <hr class="star-light">
+    </div>
+  </header>
+
+  <div class="container" style="padding-top: 30px">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-md-auto">
+        {{ post.content }}
+      </div>
+      <div class="col"></div>
+    </div>
+    <hr />
+    <h3>Comments</h3>
+    {% for comment in post.comment_set.all %}
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ comment.owner }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted"><small>{{ comment.created_at }}</small></h6>
+          <p class="card-text">{{ comment }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
