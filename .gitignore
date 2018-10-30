@@ -216,3 +216,6 @@ $RECYCLE.BIN/
 
 # ignore static folder. collectstatic on deployment
 static/
+
+# keep resume out of version control
+ComputerProgrammerTrentonBullard.pdf
